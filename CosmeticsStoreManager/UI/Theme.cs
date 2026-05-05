@@ -5,18 +5,24 @@ namespace CosmeticsStoreManager.UI;
 
 public static class Theme
 {
-    public static readonly Color AppBackground = Color.FromArgb(245, 247, 251);
-    public static readonly Color Surface = Color.White;
-    public static readonly Color SurfaceAlt = Color.FromArgb(248, 250, 252);
-    public static readonly Color Primary = Color.FromArgb(37, 99, 235);
-    public static readonly Color PrimaryDark = Color.FromArgb(30, 64, 175);
-    public static readonly Color Sidebar = Color.FromArgb(15, 23, 42);
-    public static readonly Color Success = Color.FromArgb(22, 163, 74);
-    public static readonly Color Danger = Color.FromArgb(220, 38, 38);
-    public static readonly Color TextPrimary = Color.FromArgb(15, 23, 42);
-    public static readonly Color TextMuted = Color.FromArgb(100, 116, 139);
-    public static readonly Color Border = Color.FromArgb(226, 232, 240);
+    // ?? Core Palette ?????????????????????????????????????????????????????????
+    public static readonly Color AppBackground = Color.FromArgb(255, 245, 248);   // blush white
+    public static readonly Color Surface = Color.FromArgb(255, 255, 255);   // pure white
+    public static readonly Color SurfaceAlt = Color.FromArgb(255, 240, 245);   // soft rose tint
+    public static readonly Color Primary = Color.FromArgb(219, 63, 116);   // deep rose
+    public static readonly Color PrimaryDark = Color.FromArgb(180, 35, 85);   // dark rose
+    public static readonly Color PrimaryLight = Color.FromArgb(252, 220, 232);   // pale pink
+    public static readonly Color Sidebar = Color.FromArgb(60, 18, 35);   // dark berry
+    public static readonly Color SidebarHover = Color.FromArgb(90, 30, 55);   // berry hover
+    public static readonly Color SidebarActive = Color.FromArgb(219, 63, 116);   // primary rose
+    public static readonly Color Success = Color.FromArgb(14, 159, 110);   // emerald
+    public static readonly Color Danger = Color.FromArgb(229, 62, 62);   // red
+    public static readonly Color Warning = Color.FromArgb(214, 115, 38);   // amber
+    public static readonly Color TextPrimary = Color.FromArgb(44, 13, 26);   // near-black berry
+    public static readonly Color TextMuted = Color.FromArgb(159, 99, 128);   // muted mauve
+    public static readonly Color Border = Color.FromArgb(240, 210, 225);   // rose border
 
+    // ?? Form ?????????????????????????????????????????????????????????????????
     public static void ApplyForm(Form form, string title)
     {
         form.Text = title;
@@ -25,6 +31,7 @@ public static class Theme
         form.StartPosition = FormStartPosition.CenterScreen;
     }
 
+    // ?? Cards ?????????????????????????????????????????????????????????????????
     public static Panel CreateCard(int padding = 18)
     {
         return new Panel
@@ -36,6 +43,7 @@ public static class Theme
         };
     }
 
+    // ?? Typography ???????????????????????????????????????????????????????????
     public static Label CreatePageTitle(string text)
     {
         return new Label
@@ -43,7 +51,7 @@ public static class Theme
             Text = text,
             AutoSize = true,
             Font = new Font("Segoe UI", 18F, FontStyle.Bold),
-            ForeColor = TextPrimary,
+            ForeColor = Primary,
             Margin = new Padding(0, 0, 0, 6)
         };
     }
@@ -68,10 +76,11 @@ public static class Theme
             AutoSize = true,
             Font = new Font("Segoe UI", 10F, FontStyle.Bold),
             ForeColor = TextPrimary,
-            Margin = new Padding(0, 6, 0, 6)
+            Margin = new Padding(0, 6, 0, 4)
         };
     }
 
+    // ?? Form Controls ????????????????????????????????????????????????????????
     public static TextBox CreateTextBox(string placeholder = "")
     {
         return new TextBox
@@ -79,6 +88,8 @@ public static class Theme
             PlaceholderText = placeholder,
             BorderStyle = BorderStyle.FixedSingle,
             Font = new Font("Segoe UI", 10.5F),
+            BackColor = Surface,
+            ForeColor = TextPrimary,
             Margin = new Padding(0, 0, 0, 12),
             Width = 240
         };
@@ -91,6 +102,8 @@ public static class Theme
             DropDownStyle = ComboBoxStyle.DropDownList,
             FlatStyle = FlatStyle.Flat,
             Font = new Font("Segoe UI", 10.5F),
+            BackColor = Surface,
+            ForeColor = TextPrimary,
             Margin = new Padding(0, 0, 0, 12),
             Width = 240
         };
@@ -101,6 +114,8 @@ public static class Theme
         return new NumericUpDown
         {
             Font = new Font("Segoe UI", 10.5F),
+            BackColor = Surface,
+            ForeColor = TextPrimary,
             Margin = new Padding(0, 0, 0, 12),
             Width = 240,
             ThousandsSeparator = true
@@ -112,6 +127,10 @@ public static class Theme
         return new DateTimePicker
         {
             Font = new Font("Segoe UI", 10.5F),
+            CalendarMonthBackground = PrimaryLight,
+            CalendarTitleBackColor = Primary,
+            CalendarTitleForeColor = Color.White,
+            CalendarForeColor = TextPrimary,
             Margin = new Padding(0, 0, 0, 12),
             Width = 240,
             Format = DateTimePickerFormat.Short,
@@ -119,25 +138,18 @@ public static class Theme
         };
     }
 
+    // ?? Buttons ???????????????????????????????????????????????????????????????
     public static Button CreatePrimaryButton(string text, int width = 130)
-    {
-        return BuildButton(text, Primary, Color.White, width);
-    }
+        => BuildButton(text, Primary, Color.White, width);
 
     public static Button CreateSecondaryButton(string text, int width = 130)
-    {
-        return BuildButton(text, Color.White, TextPrimary, width, Border);
-    }
+        => BuildButton(text, PrimaryLight, Primary, width, Border);
 
     public static Button CreateSuccessButton(string text, int width = 130)
-    {
-        return BuildButton(text, Success, Color.White, width);
-    }
+        => BuildButton(text, Success, Color.White, width);
 
     public static Button CreateDangerButton(string text, int width = 130)
-    {
-        return BuildButton(text, Danger, Color.White, width);
-    }
+        => BuildButton(text, Danger, Color.White, width);
 
     public static Button CreateSidebarButton(string text)
     {
@@ -148,15 +160,15 @@ public static class Theme
             Dock = DockStyle.Top,
             FlatStyle = FlatStyle.Flat,
             BackColor = Sidebar,
-            ForeColor = Color.White,
+            ForeColor = Color.FromArgb(255, 210, 225),   // soft rose text
             TextAlign = ContentAlignment.MiddleLeft,
             Padding = new Padding(18, 0, 0, 0),
             Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
             Cursor = Cursors.Hand
         };
         btn.FlatAppearance.BorderSize = 0;
-        btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 41, 59);
-        btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(37, 99, 235);
+        btn.FlatAppearance.MouseOverBackColor = SidebarHover;
+        btn.FlatAppearance.MouseDownBackColor = SidebarActive;
         return btn;
     }
 
@@ -179,6 +191,7 @@ public static class Theme
         return btn;
     }
 
+    // ?? DataGridView ??????????????????????????????????????????????????????????
     public static void StyleGrid(DataGridView grid)
     {
         grid.BackgroundColor = Surface;
@@ -192,27 +205,31 @@ public static class Theme
         grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         grid.EnableHeadersVisualStyles = false;
         grid.ColumnHeadersHeight = 42;
+
         grid.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
         {
-            BackColor = Color.FromArgb(241, 245, 249),
-            ForeColor = TextPrimary,
+            BackColor = PrimaryLight,
+            ForeColor = Primary,
             Font = new Font("Segoe UI", 10F, FontStyle.Bold),
             Alignment = DataGridViewContentAlignment.MiddleLeft
         };
+
         grid.DefaultCellStyle = new DataGridViewCellStyle
         {
             BackColor = Surface,
             ForeColor = TextPrimary,
             Font = new Font("Segoe UI", 10F),
-            SelectionBackColor = Color.FromArgb(219, 234, 254),
-            SelectionForeColor = TextPrimary
+            SelectionBackColor = Color.FromArgb(252, 220, 232),
+            SelectionForeColor = Primary
         };
+
         grid.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
         {
             BackColor = SurfaceAlt
         };
     }
 
+    // ?? Stat Cards ????????????????????????????????????????????????????????????
     public static Panel CreateStatCard(string title, string value, string note)
     {
         var card = CreateCard(18);
@@ -226,14 +243,16 @@ public static class Theme
             Font = new Font("Segoe UI", 10F, FontStyle.Bold),
             ForeColor = TextMuted
         };
+
         var lblValue = new Label
         {
             Text = value,
             AutoSize = true,
             Font = new Font("Segoe UI", 22F, FontStyle.Bold),
-            ForeColor = TextPrimary,
+            ForeColor = Primary,
             Margin = new Padding(0, 10, 0, 8)
         };
+
         var lblNote = new Label
         {
             Text = note,

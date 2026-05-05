@@ -7,12 +7,13 @@ public class LoginForm : Form
 {
     private readonly TextBox txtUsername = Theme.CreateTextBox("Nhập tên đăng nhập");
     private readonly TextBox txtPassword = Theme.CreateTextBox("Nhập mật khẩu");
-    private readonly Button btnLogin = Theme.CreatePrimaryButton("Đăng nhập", 240);
+    private readonly Button btnLogin = Theme.CreatePrimaryButton("Đăng nhập", 280);
 
     public LoginForm()
     {
         Theme.ApplyForm(this, "Đăng nhập hệ thống");
-        Size = new Size(980, 580);
+        Size = new Size(1100, 640);
+        MinimumSize = new Size(1000, 600);
         FormBorderStyle = FormBorderStyle.FixedSingle;
         MaximizeBox = false;
 
@@ -23,128 +24,171 @@ public class LoginForm : Form
         {
             Dock = DockStyle.Fill,
             ColumnCount = 2,
+            RowCount = 1,
             BackColor = Theme.AppBackground
         };
-        root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48));
-        root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 52));
+        root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45));
+        root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55));
+        root.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
+        root.Controls.Add(BuildBrandingPanel(), 0, 0);
+        root.Controls.Add(BuildLoginPanel(), 1, 0);
+        Controls.Add(root);
+
+        btnLogin.Click += BtnLogin_Click;
+    }
+
+    private Panel BuildBrandingPanel()
+    {
         var branding = new Panel
         {
             Dock = DockStyle.Fill,
             BackColor = Theme.Primary
         };
 
-        var brandWrap = new FlowLayoutPanel
+        var brandWrap = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
-            FlowDirection = FlowDirection.TopDown,
-            WrapContents = false,
-            Padding = new Padding(48, 80, 30, 30),
+            ColumnCount = 1,
+            RowCount = 3,
+            Padding = new Padding(48, 72, 40, 40),
             BackColor = Color.Transparent
         };
+        brandWrap.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        brandWrap.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        brandWrap.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-        brandWrap.Controls.Add(new Label
+        var lblTitle = new Label
         {
             Text = "COSMETICS\nSTORE MANAGER",
             AutoSize = true,
-            Font = new Font("Segoe UI", 24F, FontStyle.Bold),
+            Font = new Font("Segoe UI", 26F, FontStyle.Bold),
             ForeColor = Color.White,
-            Margin = new Padding(0, 0, 0, 16)
-        });
-        brandWrap.Controls.Add(new Label
+            Margin = new Padding(0, 0, 0, 20)
+        };
+
+        var lblDesc = new Label
         {
             Text = "Giao diện mới, trực quan hơn cho bài tập lớn nhóm.\nQuản lý sản phẩm, khách hàng, đơn hàng,\nkho và báo cáo trong một ứng dụng Windows.",
             AutoSize = true,
             Font = new Font("Segoe UI", 11F),
-            ForeColor = Color.White,
-            Margin = new Padding(0, 0, 0, 28)
-        });
+            ForeColor = Color.FromArgb(255, 220, 234),
+            Margin = new Padding(0, 0, 0, 32)
+        };
 
+        // Info card — dùng PrimaryDark thay vì alpha để tránh lỗi màu vàng
         var infoCard = new Panel
         {
             Width = 320,
-            Height = 140,
-            BackColor = Color.FromArgb(255, 255, 255, 40),
-            Padding = new Padding(18),
+            Height = 130,
+            BackColor = Theme.PrimaryDark,
+            Padding = new Padding(20),
             Margin = new Padding(0)
         };
-        infoCard.Controls.Add(new Label
+        var lblInfo = new Label
         {
             Dock = DockStyle.Fill,
             Text = "Tài khoản mẫu\n• Admin: admin / 123456\n• Staff: staff / 123456",
             ForeColor = Color.White,
             Font = new Font("Segoe UI", 11F, FontStyle.Bold),
             AutoSize = false
-        });
-        brandWrap.Controls.Add(infoCard);
-        branding.Controls.Add(brandWrap);
+        };
+        infoCard.Controls.Add(lblInfo);
 
+        brandWrap.Controls.Add(lblTitle, 0, 0);
+        brandWrap.Controls.Add(lblDesc, 0, 1);
+        brandWrap.Controls.Add(infoCard, 0, 2);
+        branding.Controls.Add(brandWrap);
+        return branding;
+    }
+
+    private Panel BuildLoginPanel()
+    {
         var loginHost = new Panel
         {
             Dock = DockStyle.Fill,
-            Padding = new Padding(50)
+            BackColor = Theme.Surface,
+            Padding = new Padding(60, 0, 60, 0)
         };
 
-        var loginCard = Theme.CreateCard(28);
-        loginCard.Dock = DockStyle.Fill;
-
-        var loginLayout = new TableLayoutPanel
+        // Dùng TableLayoutPanel để căn giữa dọc
+        var centerWrap = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
-            RowCount = 9,
-            ColumnCount = 1
+            ColumnCount = 1,
+            RowCount = 3,
+            BackColor = Color.Transparent
         };
-        for (int i = 0; i < 9; i++)
-            loginLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        centerWrap.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
+        centerWrap.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        centerWrap.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
 
-        loginLayout.Controls.Add(new Label
+        var loginForm = new FlowLayoutPanel
+        {
+            AutoSize = true,
+            FlowDirection = FlowDirection.TopDown,
+            WrapContents = false,
+            BackColor = Color.Transparent
+        };
+
+        var lblWelcome = new Label
         {
             Text = "Chào mừng quay lại",
             AutoSize = true,
             Font = new Font("Segoe UI", 22F, FontStyle.Bold),
-            ForeColor = Theme.TextPrimary
-        }, 0, 0);
+            ForeColor = Theme.TextPrimary,
+            Margin = new Padding(0, 0, 0, 6)
+        };
 
-        loginLayout.Controls.Add(new Label
+        var lblSub = new Label
         {
             Text = "Đăng nhập để sử dụng hệ thống quản lý cửa hàng mỹ phẩm.",
             AutoSize = true,
             Font = new Font("Segoe UI", 10.5F),
             ForeColor = Theme.TextMuted,
-            Margin = new Padding(0, 8, 0, 22)
-        }, 0, 1);
+            Margin = new Padding(0, 0, 0, 28)
+        };
 
-        loginLayout.Controls.Add(Theme.CreateFieldLabel("Tên đăng nhập"), 0, 2);
+        var lblUser = Theme.CreateFieldLabel("Tên đăng nhập");
+        lblUser.Margin = new Padding(0, 0, 0, 4);
         txtUsername.Width = 360;
-        txtUsername.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        loginLayout.Controls.Add(txtUsername, 0, 3);
+        txtUsername.Height = 36;
+        txtUsername.Margin = new Padding(0, 0, 0, 16);
 
-        loginLayout.Controls.Add(Theme.CreateFieldLabel("Mật khẩu"), 0, 4);
+        var lblPass = Theme.CreateFieldLabel("Mật khẩu");
+        lblPass.Margin = new Padding(0, 0, 0, 4);
         txtPassword.Width = 360;
-        txtPassword.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        loginLayout.Controls.Add(txtPassword, 0, 5);
+        txtPassword.Height = 36;
+        txtPassword.Margin = new Padding(0, 0, 0, 24);
 
-        btnLogin.Margin = new Padding(0, 18, 0, 10);
-        btnLogin.Anchor = AnchorStyles.Left;
-        loginLayout.Controls.Add(btnLogin, 0, 6);
+        btnLogin.Width = 360;
+        btnLogin.Height = 44;
+        btnLogin.Margin = new Padding(0, 0, 0, 14);
+        btnLogin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
 
-        loginLayout.Controls.Add(new Label
+        var lblTip = new Label
         {
             Text = "Mẹo: dùng tài khoản Staff để kiểm tra phân quyền cơ bản.",
             AutoSize = true,
             Font = new Font("Segoe UI", 9.5F),
-            ForeColor = Theme.TextMuted,
-            Margin = new Padding(0, 5, 0, 0)
-        }, 0, 7);
+            ForeColor = Theme.TextMuted
+        };
 
-        loginCard.Controls.Add(loginLayout);
-        loginHost.Controls.Add(loginCard);
+        loginForm.Controls.Add(lblWelcome);
+        loginForm.Controls.Add(lblSub);
+        loginForm.Controls.Add(lblUser);
+        loginForm.Controls.Add(txtUsername);
+        loginForm.Controls.Add(lblPass);
+        loginForm.Controls.Add(txtPassword);
+        loginForm.Controls.Add(btnLogin);
+        loginForm.Controls.Add(lblTip);
 
-        root.Controls.Add(branding, 0, 0);
-        root.Controls.Add(loginHost, 1, 0);
-        Controls.Add(root);
+        centerWrap.Controls.Add(new Panel { BackColor = Color.Transparent }, 0, 0);
+        centerWrap.Controls.Add(loginForm, 0, 1);
+        centerWrap.Controls.Add(new Panel { BackColor = Color.Transparent }, 0, 2);
 
-        btnLogin.Click += BtnLogin_Click;
+        loginHost.Controls.Add(centerWrap);
+        return loginHost;
     }
 
     private void BtnLogin_Click(object? sender, EventArgs e)
@@ -156,7 +200,8 @@ public class LoginForm : Form
 
             if (user is null)
             {
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Sai tài khoản hoặc mật khẩu.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -171,7 +216,8 @@ public class LoginForm : Form
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Lỗi đăng nhập: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Lỗi đăng nhập: " + ex.Message, "Lỗi",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

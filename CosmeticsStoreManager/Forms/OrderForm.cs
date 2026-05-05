@@ -14,12 +14,15 @@ public class OrderForm : Form
     private readonly ComboBox cboProduct = Theme.CreateComboBox();
     private readonly NumericUpDown nudQuantity = Theme.CreateNumeric();
     private readonly DataGridView dgvItems = new() { Dock = DockStyle.Fill };
+
+    // FIX: đổi ForeColor từ TextPrimary (đen) sang Primary (hồng)
     private readonly Label lblTotal = new()
     {
         Text = "Tổng tiền: 0 VNĐ",
         AutoSize = true,
         Font = new Font("Segoe UI", 18F, FontStyle.Bold),
-        ForeColor = Theme.TextPrimary
+        ForeColor = Theme.Primary,
+        Margin = new Padding(0, 0, 0, 0)
     };
 
     private readonly List<OrderItem> _items = new();
@@ -41,7 +44,7 @@ public class OrderForm : Form
             ColumnCount = 2,
             Padding = new Padding(20)
         };
-        root.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 410));
+        root.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 420));
         root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
 
         root.Controls.Add(BuildLeftPanel(), 0, 0);
@@ -61,29 +64,32 @@ public class OrderForm : Form
         {
             Dock = DockStyle.Fill,
             ColumnCount = 1,
-            RowCount = 14,
+            RowCount = 11,
             AutoScroll = true
         };
+        for (int i = 0; i < 11; i++)
+            layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-        layout.Controls.Add(Theme.CreatePageTitle("Tạo đơn hàng"), 0, 0);
+        layout.Controls.Add(Theme.CreatePageTitle("🛒  Tạo đơn hàng"), 0, 0);
         layout.Controls.Add(Theme.CreateSubtitle("Chọn khách hàng, thêm sản phẩm và lưu đơn hàng."), 0, 1);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Khách hàng"), 0, 2);
-        cboCustomer.Width = 320;
-        layout.Controls.Add(cboCustomer, 0, 3);
+        cboCustomer.Width = 340; layout.Controls.Add(cboCustomer, 0, 3);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Sản phẩm"), 0, 4);
-        cboProduct.Width = 320;
-        layout.Controls.Add(cboProduct, 0, 5);
+        cboProduct.Width = 340; layout.Controls.Add(cboProduct, 0, 5);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Số lượng"), 0, 6);
-        nudQuantity.Width = 320;
-        layout.Controls.Add(nudQuantity, 0, 7);
+        nudQuantity.Width = 340; layout.Controls.Add(nudQuantity, 0, 7);
 
-        var actions = new FlowLayoutPanel { AutoSize = true, Margin = new Padding(0, 14, 0, 10) };
-        var btnAddItem = Theme.CreatePrimaryButton("Thêm vào đơn", 150);
-        var btnRemoveItem = Theme.CreateDangerButton("Xóa dòng", 120);
-        var btnSaveOrder = Theme.CreateSuccessButton("Lưu đơn hàng", 150);
+        var actions = new FlowLayoutPanel
+        {
+            AutoSize = true,
+            Margin = new Padding(0, 14, 0, 10)
+        };
+        var btnAddItem = Theme.CreatePrimaryButton("➕ Thêm vào đơn", 155);
+        var btnRemoveItem = Theme.CreateDangerButton("🗑 Xóa dòng", 130);
+        var btnSaveOrder = Theme.CreateSuccessButton("💾 Lưu đơn hàng", 155);
 
         btnAddItem.Click += (_, _) => AddItem();
         btnRemoveItem.Click += (_, _) => RemoveSelectedItem();
@@ -92,11 +98,33 @@ public class OrderForm : Form
         actions.Controls.AddRange([btnAddItem, btnRemoveItem, btnSaveOrder]);
         layout.Controls.Add(actions, 0, 8);
 
+        // Total card — nền hồng nhạt, chữ hồng đậm
         var totalCard = Theme.CreateCard(20);
-        totalCard.Height = 120;
+        totalCard.Height = 110;
+        totalCard.BackColor = Theme.PrimaryLight;
         totalCard.Margin = new Padding(0, 10, 0, 0);
-        totalCard.Controls.Add(lblTotal);
-        lblTotal.Location = new Point(18, 36);
+
+        var totalLayout = new TableLayoutPanel
+        {
+            Dock = DockStyle.Fill,
+            ColumnCount = 1,
+            RowCount = 2,
+            BackColor = Color.Transparent
+        };
+        totalLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        totalLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+
+        var lblTotalLabel = new Label
+        {
+            Text = "Tổng tiền đơn hàng",
+            AutoSize = true,
+            Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
+            ForeColor = Theme.TextMuted,
+            Margin = new Padding(0, 0, 0, 4)
+        };
+        totalLayout.Controls.Add(lblTotalLabel, 0, 0);
+        totalLayout.Controls.Add(lblTotal, 0, 1);
+        totalCard.Controls.Add(totalLayout);
 
         layout.Controls.Add(totalCard, 0, 9);
         card.Controls.Add(layout);
@@ -117,8 +145,11 @@ public class OrderForm : Form
             ColumnCount = 1,
             RowCount = 2
         };
-        headerLayout.Controls.Add(Theme.CreatePageTitle("Chi tiết đơn hàng"), 0, 0);
-        headerLayout.Controls.Add(Theme.CreateSubtitle("Các sản phẩm đã thêm sẽ hiển thị ở đây. Chọn dòng để xóa nếu cần."), 0, 1);
+        headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        headerLayout.Controls.Add(Theme.CreatePageTitle("📄  Chi tiết đơn hàng"), 0, 0);
+        headerLayout.Controls.Add(Theme.CreateSubtitle(
+            "Các sản phẩm đã thêm sẽ hiển thị ở đây. Chọn dòng để xóa nếu cần."), 0, 1);
         headerCard.Controls.Add(headerLayout);
 
         var gridCard = Theme.CreateCard(10);
@@ -162,15 +193,13 @@ public class OrderForm : Form
     {
         if (cboProduct.SelectedItem is not Product product)
         {
-            MessageBox.Show("Vui lòng chọn sản phẩm.");
-            return;
+            MessageBox.Show("Vui lòng chọn sản phẩm."); return;
         }
 
         int requested = (int)nudQuantity.Value;
         if (requested > product.QuantityInStock)
         {
-            MessageBox.Show("Số lượng vượt quá tồn kho.");
-            return;
+            MessageBox.Show("Số lượng vượt quá tồn kho."); return;
         }
 
         var existing = _items.FirstOrDefault(x => x.ProductId == product.ProductId);
@@ -178,8 +207,7 @@ public class OrderForm : Form
         {
             if (existing.Quantity + requested > product.QuantityInStock)
             {
-                MessageBox.Show("Tổng số lượng trong đơn vượt quá tồn kho.");
-                return;
+                MessageBox.Show("Tổng số lượng trong đơn vượt quá tồn kho."); return;
             }
             existing.Quantity += requested;
         }
@@ -201,41 +229,35 @@ public class OrderForm : Form
     {
         if (dgvItems.CurrentRow == null) return;
         int productId = Convert.ToInt32(dgvItems.CurrentRow.Cells["ProductId"].Value);
-
         var item = _items.FirstOrDefault(x => x.ProductId == productId);
-        if (item != null)
-        {
-            _items.Remove(item);
-            BindItems();
-        }
+        if (item != null) { _items.Remove(item); BindItems(); }
     }
 
     private void SaveOrder()
     {
         if (cboCustomer.SelectedValue == null)
         {
-            MessageBox.Show("Vui lòng chọn khách hàng.");
-            return;
+            MessageBox.Show("Vui lòng chọn khách hàng."); return;
         }
-
         if (_items.Count == 0)
         {
-            MessageBox.Show("Đơn hàng chưa có sản phẩm.");
-            return;
+            MessageBox.Show("Đơn hàng chưa có sản phẩm."); return;
         }
 
         try
         {
             int customerId = Convert.ToInt32(cboCustomer.SelectedValue);
             int orderId = _orderRepo.CreateOrder(customerId, Session.UserId, _items);
-            MessageBox.Show($"Tạo đơn hàng thành công. Mã đơn: {orderId}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Tạo đơn hàng thành công. Mã đơn: {orderId}", "Thông báo",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
             _items.Clear();
             BindItems();
             LoadLookups();
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Lỗi lưu đơn hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Lỗi lưu đơn hàng: " + ex.Message, "Lỗi",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

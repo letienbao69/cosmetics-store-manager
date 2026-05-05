@@ -51,16 +51,30 @@ public class CustomerForm : Form
             RowCount = 12,
             AutoScroll = true
         };
+        for (int i = 0; i < 12; i++)
+            layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-        layout.Controls.Add(Theme.CreatePageTitle("Thông tin khách hàng"), 0, 0);
+        layout.Controls.Add(Theme.CreatePageTitle("👤  Thông tin khách hàng"), 0, 0);
         layout.Controls.Add(Theme.CreateSubtitle("Quản lý hồ sơ khách hàng để tiện tra cứu và lập đơn hàng."), 0, 1);
 
-        layout.Controls.Add(Theme.CreateFieldLabel("Họ và tên"), 0, 2); layout.Controls.Add(txtFullName, 0, 3);
-        layout.Controls.Add(Theme.CreateFieldLabel("Số điện thoại"), 0, 4); layout.Controls.Add(txtPhone, 0, 5);
-        layout.Controls.Add(Theme.CreateFieldLabel("Địa chỉ"), 0, 6); layout.Controls.Add(txtAddress, 0, 7);
-        layout.Controls.Add(Theme.CreateFieldLabel("Email"), 0, 8); layout.Controls.Add(txtEmail, 0, 9);
+        layout.Controls.Add(Theme.CreateFieldLabel("Họ và tên"), 0, 2);
+        txtFullName.Width = 310; layout.Controls.Add(txtFullName, 0, 3);
 
-        var actions = new FlowLayoutPanel { AutoSize = true, Margin = new Padding(0, 12, 0, 0) };
+        layout.Controls.Add(Theme.CreateFieldLabel("Số điện thoại"), 0, 4);
+        txtPhone.Width = 310; layout.Controls.Add(txtPhone, 0, 5);
+
+        layout.Controls.Add(Theme.CreateFieldLabel("Địa chỉ"), 0, 6);
+        txtAddress.Width = 310; layout.Controls.Add(txtAddress, 0, 7);
+
+        layout.Controls.Add(Theme.CreateFieldLabel("Email"), 0, 8);
+        txtEmail.Width = 310; layout.Controls.Add(txtEmail, 0, 9);
+
+        var actions = new FlowLayoutPanel
+        {
+            AutoSize = true,
+            Margin = new Padding(0, 14, 0, 0)
+        };
+
         var btnAdd = Theme.CreatePrimaryButton("Thêm");
         var btnUpdate = Theme.CreateSuccessButton("Cập nhật");
         var btnDelete = Theme.CreateDangerButton("Xóa");
@@ -84,7 +98,7 @@ public class CustomerForm : Form
 
         var headerCard = Theme.CreateCard(18);
         headerCard.Dock = DockStyle.Top;
-        headerCard.Height = 135;
+        headerCard.Height = 140;
 
         var headerLayout = new TableLayoutPanel
         {
@@ -92,17 +106,23 @@ public class CustomerForm : Form
             ColumnCount = 1,
             RowCount = 3
         };
+        for (int i = 0; i < 3; i++)
+            headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-        headerLayout.Controls.Add(Theme.CreatePageTitle("Danh sách khách hàng"), 0, 0);
+        headerLayout.Controls.Add(Theme.CreatePageTitle("📋  Danh sách khách hàng"), 0, 0);
         headerLayout.Controls.Add(Theme.CreateSubtitle("Tìm kiếm khách hàng nhanh để hỗ trợ bán hàng thuận tiện hơn."), 0, 1);
 
-        var searchRow = new FlowLayoutPanel { Dock = DockStyle.Fill };
-        txtSearch.Width = 330;
-        var btnSearch = Theme.CreatePrimaryButton("Tìm", 110);
-        var btnReload = Theme.CreateSecondaryButton("Tải lại", 110);
+        var searchRow = new FlowLayoutPanel
+        {
+            AutoSize = true,
+            Margin = new Padding(0, 8, 0, 0)
+        };
+        txtSearch.Width = 310;
+        var btnSearch = Theme.CreatePrimaryButton("🔍 Tìm", 110);
+        var btnReload = Theme.CreateSecondaryButton("↺ Tải lại", 110);
 
         btnSearch.Click += (_, _) => LoadData(txtSearch.Text.Trim());
-        btnReload.Click += (_, _) => LoadData();
+        btnReload.Click += (_, _) => { txtSearch.Clear(); LoadData(); };
 
         searchRow.Controls.Add(txtSearch);
         searchRow.Controls.Add(btnSearch);
@@ -121,86 +141,72 @@ public class CustomerForm : Form
     }
 
     private void LoadData(string? keyword = null)
-    {
-        dgv.DataSource = _repo.GetAll(keyword);
-    }
+        => dgv.DataSource = _repo.GetAll(keyword);
 
-    private Customer BuildCustomer()
+    private Customer BuildCustomer() => new()
     {
-        return new Customer
-        {
-            CustomerId = _selectedId,
-            FullName = txtFullName.Text.Trim(),
-            Phone = txtPhone.Text.Trim(),
-            Address = txtAddress.Text.Trim(),
-            Email = txtEmail.Text.Trim()
-        };
-    }
+        CustomerId = _selectedId,
+        FullName = txtFullName.Text.Trim(),
+        Phone = txtPhone.Text.Trim(),
+        Address = txtAddress.Text.Trim(),
+        Email = txtEmail.Text.Trim()
+    };
 
     private void AddCustomer()
     {
         try
         {
             _repo.Add(BuildCustomer());
-            MessageBox.Show("Thêm khách hàng thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadData();
-            ClearInput();
+            MessageBox.Show("Thêm khách hàng thành công.", "Thông báo",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadData(); ClearInput();
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Lỗi thêm khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Lỗi thêm khách hàng: " + ex.Message, "Lỗi",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
     private void UpdateCustomer()
     {
-        if (_selectedId == 0)
-        {
-            MessageBox.Show("Hãy chọn khách hàng cần sửa.");
-            return;
-        }
-
+        if (_selectedId == 0) { MessageBox.Show("Hãy chọn khách hàng cần sửa."); return; }
         try
         {
             _repo.Update(BuildCustomer());
-            MessageBox.Show("Cập nhật khách hàng thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadData();
-            ClearInput();
+            MessageBox.Show("Cập nhật khách hàng thành công.", "Thông báo",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadData(); ClearInput();
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Lỗi cập nhật khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Lỗi cập nhật khách hàng: " + ex.Message, "Lỗi",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
     private void DeleteCustomer()
     {
-        if (_selectedId == 0)
-        {
-            MessageBox.Show("Hãy chọn khách hàng cần xóa.");
-            return;
-        }
-
-        if (MessageBox.Show("Bạn có chắc muốn xóa khách hàng này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            return;
-
+        if (_selectedId == 0) { MessageBox.Show("Hãy chọn khách hàng cần xóa."); return; }
+        if (MessageBox.Show("Bạn có chắc muốn xóa khách hàng này?", "Xác nhận",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
         try
         {
             _repo.Delete(_selectedId);
-            MessageBox.Show("Xóa khách hàng thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadData();
-            ClearInput();
+            MessageBox.Show("Xóa khách hàng thành công.", "Thông báo",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadData(); ClearInput();
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Lỗi xóa khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Lỗi xóa khách hàng: " + ex.Message, "Lỗi",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
     private void Dgv_SelectionChanged(object? sender, EventArgs e)
     {
         if (dgv.CurrentRow?.DataBoundItem is not Customer c) return;
-
         _selectedId = c.CustomerId;
         txtFullName.Text = c.FullName;
         txtPhone.Text = c.Phone;
@@ -211,9 +217,7 @@ public class CustomerForm : Form
     private void ClearInput()
     {
         _selectedId = 0;
-        txtFullName.Clear();
-        txtPhone.Clear();
-        txtAddress.Clear();
-        txtEmail.Clear();
+        txtFullName.Clear(); txtPhone.Clear();
+        txtAddress.Clear(); txtEmail.Clear();
     }
 }
