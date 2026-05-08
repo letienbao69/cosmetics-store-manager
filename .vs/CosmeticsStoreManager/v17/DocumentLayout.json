@@ -1,12 +1,86 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\C#BTL\\CosmeticsStoreManager\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\Forms\\CustomerForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CosmeticsStoreManager\\Forms\\CustomerForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\Forms\\ProductForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CosmeticsStoreManager\\Forms\\ProductForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\UI\\Theme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CosmeticsStoreManager\\UI\\Theme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\Forms\\OrderForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CosmeticsStoreManager\\Forms\\OrderForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderForm.cs",
+              "DocumentMoniker": "C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\Forms\\OrderForm.cs",
+              "RelativeDocumentMoniker": "CosmeticsStoreManager\\Forms\\OrderForm.cs",
+              "ToolTip": "C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\Forms\\OrderForm.cs",
+              "RelativeToolTip": "CosmeticsStoreManager\\Forms\\OrderForm.cs",
+              "ViewState": "AgIAAOsAAAAAAAAAAAAowAYBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T10:31:48.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductForm.cs",
+              "DocumentMoniker": "C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\Forms\\ProductForm.cs",
+              "RelativeDocumentMoniker": "CosmeticsStoreManager\\Forms\\ProductForm.cs",
+              "ToolTip": "C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\Forms\\ProductForm.cs",
+              "RelativeToolTip": "CosmeticsStoreManager\\Forms\\ProductForm.cs",
+              "ViewState": "AgIAACYBAAAAAAAAAAAowDkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T10:31:30.584Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomerForm.cs",
+              "DocumentMoniker": "C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\Forms\\CustomerForm.cs",
+              "RelativeDocumentMoniker": "CosmeticsStoreManager\\Forms\\CustomerForm.cs",
+              "ToolTip": "C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\Forms\\CustomerForm.cs",
+              "RelativeToolTip": "CosmeticsStoreManager\\Forms\\CustomerForm.cs",
+              "ViewState": "AgIAAOIAAAAAAAAAAAAowPQAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T10:31:11.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Theme.cs",
+              "DocumentMoniker": "C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\UI\\Theme.cs",
+              "RelativeDocumentMoniker": "CosmeticsStoreManager\\UI\\Theme.cs",
+              "ToolTip": "C:\\C#BTL\\CosmeticsStoreManager\\CosmeticsStoreManager\\UI\\Theme.cs",
+              "RelativeToolTip": "CosmeticsStoreManager\\UI\\Theme.cs",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAowBgBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T10:30:40.243Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

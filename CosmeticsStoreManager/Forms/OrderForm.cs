@@ -65,7 +65,8 @@ public class OrderForm : Form
             Dock = DockStyle.Fill,
             ColumnCount = 1,
             RowCount = 11,
-            AutoScroll = true
+            AutoScroll = false,
+            AutoSize = false
         };
         for (int i = 0; i < 11; i++)
             layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
@@ -74,13 +75,13 @@ public class OrderForm : Form
         layout.Controls.Add(Theme.CreateSubtitle("Chọn khách hàng, thêm sản phẩm và lưu đơn hàng."), 0, 1);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Khách hàng"), 0, 2);
-        cboCustomer.Width = 340; layout.Controls.Add(cboCustomer, 0, 3);
+        cboCustomer.Dock = DockStyle.Fill; layout.Controls.Add(cboCustomer, 0, 3);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Sản phẩm"), 0, 4);
-        cboProduct.Width = 340; layout.Controls.Add(cboProduct, 0, 5);
+        cboProduct.Dock = DockStyle.Fill; layout.Controls.Add(cboProduct, 0, 5);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Số lượng"), 0, 6);
-        nudQuantity.Width = 340; layout.Controls.Add(nudQuantity, 0, 7);
+        nudQuantity.Dock = DockStyle.Fill; layout.Controls.Add(nudQuantity, 0, 7);
 
         var actions = new FlowLayoutPanel
         {
@@ -98,21 +99,13 @@ public class OrderForm : Form
         actions.Controls.AddRange([btnAddItem, btnRemoveItem, btnSaveOrder]);
         layout.Controls.Add(actions, 0, 8);
 
-        // Total card — nền hồng nhạt, chữ hồng đậm
-        var totalCard = Theme.CreateCard(20);
-        totalCard.Height = 110;
+        // Total card — nền hồng nhạt, đủ cao để hiển thị số tiền
+        var totalCard = Theme.CreateCard(16);
+        totalCard.Height = 90;
+        totalCard.Dock = DockStyle.None;
+        totalCard.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         totalCard.BackColor = Theme.PrimaryLight;
-        totalCard.Margin = new Padding(0, 10, 0, 0);
-
-        var totalLayout = new TableLayoutPanel
-        {
-            Dock = DockStyle.Fill,
-            ColumnCount = 1,
-            RowCount = 2,
-            BackColor = Color.Transparent
-        };
-        totalLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        totalLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        totalCard.Margin = new Padding(0, 8, 0, 0);
 
         var lblTotalLabel = new Label
         {
@@ -120,11 +113,18 @@ public class OrderForm : Form
             AutoSize = true,
             Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
             ForeColor = Theme.TextMuted,
-            Margin = new Padding(0, 0, 0, 4)
+            Dock = DockStyle.Top,
+            Height = 22,
+            Padding = new Padding(0, 0, 0, 0)
         };
-        totalLayout.Controls.Add(lblTotalLabel, 0, 0);
-        totalLayout.Controls.Add(lblTotal, 0, 1);
-        totalCard.Controls.Add(totalLayout);
+
+        lblTotal.Dock = DockStyle.Top;
+        lblTotal.AutoSize = false;
+        lblTotal.Height = 40;
+        lblTotal.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+
+        totalCard.Controls.Add(lblTotal);
+        totalCard.Controls.Add(lblTotalLabel);
 
         layout.Controls.Add(totalCard, 0, 9);
         card.Controls.Add(layout);
@@ -137,7 +137,7 @@ public class OrderForm : Form
 
         var headerCard = Theme.CreateCard(18);
         headerCard.Dock = DockStyle.Top;
-        headerCard.Height = 110;
+        headerCard.Height = 120;
 
         var headerLayout = new TableLayoutPanel
         {

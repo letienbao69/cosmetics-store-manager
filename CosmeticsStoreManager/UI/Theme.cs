@@ -50,9 +50,9 @@ public static class Theme
         {
             Text = text,
             AutoSize = true,
-            Font = new Font("Segoe UI", 18F, FontStyle.Bold),
+            Font = new Font("Segoe UI", 16F, FontStyle.Bold),
             ForeColor = Primary,
-            Margin = new Padding(0, 0, 0, 6)
+            Margin = new Padding(0, 0, 0, 4)
         };
     }
 
@@ -61,10 +61,13 @@ public static class Theme
         return new Label
         {
             Text = text,
-            AutoSize = true,
+            AutoSize = false,
+            Dock = DockStyle.Top,
+            Height = 48,
             Font = new Font("Segoe UI", 9.5F, FontStyle.Regular),
             ForeColor = TextMuted,
-            Margin = new Padding(0, 0, 0, 10)
+            Margin = new Padding(0, 0, 0, 6),
+            AutoEllipsis = false
         };
     }
 
@@ -100,7 +103,7 @@ public static class Theme
         return new ComboBox
         {
             DropDownStyle = ComboBoxStyle.DropDownList,
-            FlatStyle = FlatStyle.Flat,
+            FlatStyle = FlatStyle.Popup,
             Font = new Font("Segoe UI", 10.5F),
             BackColor = Surface,
             ForeColor = TextPrimary,
@@ -233,8 +236,8 @@ public static class Theme
     public static Panel CreateStatCard(string title, string value, string note)
     {
         var card = CreateCard(18);
-        card.Width = 250;
-        card.Height = 140;
+        card.Width = 260;
+        card.Height = 160;
 
         var lblTitle = new Label
         {
@@ -250,13 +253,15 @@ public static class Theme
             AutoSize = true,
             Font = new Font("Segoe UI", 22F, FontStyle.Bold),
             ForeColor = Primary,
-            Margin = new Padding(0, 10, 0, 8)
+            Margin = new Padding(0, 8, 0, 6)
         };
 
         var lblNote = new Label
         {
             Text = note,
-            AutoSize = true,
+            AutoSize = false,
+            Width = 220,
+            Height = 38,
             Font = new Font("Segoe UI", 9F),
             ForeColor = TextMuted
         };

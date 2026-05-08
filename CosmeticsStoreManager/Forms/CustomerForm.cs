@@ -28,7 +28,7 @@ public class CustomerForm : Form
             ColumnCount = 2,
             Padding = new Padding(20)
         };
-        root.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 380));
+        root.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 420));
         root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
 
         root.Controls.Add(BuildLeftPanel(), 0, 0);
@@ -49,43 +49,61 @@ public class CustomerForm : Form
             Dock = DockStyle.Fill,
             ColumnCount = 1,
             RowCount = 12,
-            AutoScroll = true
+            AutoScroll = false,
+            AutoSize = false
         };
         for (int i = 0; i < 12; i++)
             layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
         layout.Controls.Add(Theme.CreatePageTitle("👤  Thông tin khách hàng"), 0, 0);
-        layout.Controls.Add(Theme.CreateSubtitle("Quản lý hồ sơ khách hàng để tiện tra cứu và lập đơn hàng."), 0, 1);
+        layout.Controls.Add(Theme.CreateSubtitle("Quản lý hồ sơ khách hàng để tiện tra cứu và lập đơn."), 0, 1);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Họ và tên"), 0, 2);
-        txtFullName.Width = 310; layout.Controls.Add(txtFullName, 0, 3);
+        txtFullName.Dock = DockStyle.Fill; layout.Controls.Add(txtFullName, 0, 3);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Số điện thoại"), 0, 4);
-        txtPhone.Width = 310; layout.Controls.Add(txtPhone, 0, 5);
+        txtPhone.Dock = DockStyle.Fill; layout.Controls.Add(txtPhone, 0, 5);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Địa chỉ"), 0, 6);
-        txtAddress.Width = 310; layout.Controls.Add(txtAddress, 0, 7);
+        txtAddress.Dock = DockStyle.Fill; layout.Controls.Add(txtAddress, 0, 7);
 
         layout.Controls.Add(Theme.CreateFieldLabel("Email"), 0, 8);
-        txtEmail.Width = 310; layout.Controls.Add(txtEmail, 0, 9);
+        txtEmail.Dock = DockStyle.Fill; layout.Controls.Add(txtEmail, 0, 9);
 
-        var actions = new FlowLayoutPanel
+        // Buttons 2x2 grid — đều nhau, fill chiều rộng
+        var actions = new TableLayoutPanel
         {
-            AutoSize = true,
-            Margin = new Padding(0, 14, 0, 0)
+            ColumnCount = 2,
+            RowCount = 2,
+            Dock = DockStyle.Fill,
+            Margin = new Padding(0, 14, 0, 0),
+            AutoSize = true
         };
+        actions.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        actions.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        actions.RowStyles.Add(new RowStyle(SizeType.Absolute, 44));
+        actions.RowStyles.Add(new RowStyle(SizeType.Absolute, 44));
 
         var btnAdd = Theme.CreatePrimaryButton("Thêm");
         var btnUpdate = Theme.CreateSuccessButton("Cập nhật");
         var btnDelete = Theme.CreateDangerButton("Xóa");
         var btnClear = Theme.CreateSecondaryButton("Làm mới");
 
+        foreach (var b in new[] { btnAdd, btnUpdate, btnDelete, btnClear })
+        {
+            b.Dock = DockStyle.Fill;
+            b.Margin = new Padding(0, 0, 6, 6);
+        }
+
         btnAdd.Click += (_, _) => AddCustomer();
         btnUpdate.Click += (_, _) => UpdateCustomer();
         btnDelete.Click += (_, _) => DeleteCustomer();
         btnClear.Click += (_, _) => ClearInput();
 
-        actions.Controls.AddRange([btnAdd, btnUpdate, btnDelete, btnClear]);
+        actions.Controls.Add(btnAdd, 0, 0);
+        actions.Controls.Add(btnUpdate, 1, 0);
+        actions.Controls.Add(btnDelete, 0, 1);
+        actions.Controls.Add(btnClear, 1, 1);
         layout.Controls.Add(actions, 0, 10);
 
         card.Controls.Add(layout);
@@ -98,7 +116,7 @@ public class CustomerForm : Form
 
         var headerCard = Theme.CreateCard(18);
         headerCard.Dock = DockStyle.Top;
-        headerCard.Height = 140;
+        headerCard.Height = 148;
 
         var headerLayout = new TableLayoutPanel
         {
@@ -106,27 +124,40 @@ public class CustomerForm : Form
             ColumnCount = 1,
             RowCount = 3
         };
-        for (int i = 0; i < 3; i++)
-            headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        headerLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 54));
 
         headerLayout.Controls.Add(Theme.CreatePageTitle("📋  Danh sách khách hàng"), 0, 0);
         headerLayout.Controls.Add(Theme.CreateSubtitle("Tìm kiếm khách hàng nhanh để hỗ trợ bán hàng thuận tiện hơn."), 0, 1);
 
-        var searchRow = new FlowLayoutPanel
+        var searchRow = new TableLayoutPanel
         {
-            AutoSize = true,
-            Margin = new Padding(0, 8, 0, 0)
+            Dock = DockStyle.Fill,
+            ColumnCount = 3,
+            RowCount = 1,
+            Margin = new Padding(0, 6, 0, 0)
         };
-        txtSearch.Width = 310;
-        var btnSearch = Theme.CreatePrimaryButton("🔍 Tìm", 110);
-        var btnReload = Theme.CreateSecondaryButton("↺ Tải lại", 110);
+        searchRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        searchRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110));
+        searchRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110));
+        searchRow.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+        txtSearch.Dock = DockStyle.Fill;
+        txtSearch.Margin = new Padding(0, 0, 6, 0);
+        var btnSearch = Theme.CreatePrimaryButton("🔍  Tìm", 104);
+        var btnReload = Theme.CreateSecondaryButton("↺  Tải lại", 104);
+        btnSearch.Dock = DockStyle.Fill;
+        btnSearch.Margin = new Padding(0, 0, 6, 0);
+        btnReload.Dock = DockStyle.Fill;
+        btnReload.Margin = new Padding(0);
 
         btnSearch.Click += (_, _) => LoadData(txtSearch.Text.Trim());
         btnReload.Click += (_, _) => { txtSearch.Clear(); LoadData(); };
 
-        searchRow.Controls.Add(txtSearch);
-        searchRow.Controls.Add(btnSearch);
-        searchRow.Controls.Add(btnReload);
+        searchRow.Controls.Add(txtSearch, 0, 0);
+        searchRow.Controls.Add(btnSearch, 1, 0);
+        searchRow.Controls.Add(btnReload, 2, 0);
 
         headerLayout.Controls.Add(searchRow, 0, 2);
         headerCard.Controls.Add(headerLayout);
