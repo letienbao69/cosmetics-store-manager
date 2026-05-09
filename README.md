@@ -1,1 +1,1 @@
-# cosmetics-store-manager
+# cosmetics-store-manage
