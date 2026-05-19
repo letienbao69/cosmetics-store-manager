@@ -15,7 +15,6 @@ public class OrderForm : Form
     private readonly NumericUpDown nudQuantity = Theme.CreateNumeric();
     private readonly DataGridView dgvItems = new() { Dock = DockStyle.Fill };
 
-    // FIX: đổi ForeColor từ TextPrimary (đen) sang Primary (hồng)
     private readonly Label lblTotal = new()
     {
         Text = "Tổng tiền: 0 VNĐ",
@@ -31,6 +30,7 @@ public class OrderForm : Form
     {
         Theme.ApplyForm(this, "Quản lý đơn hàng");
         Size = new Size(1320, 780);
+        AutoScroll = true;
 
         nudQuantity.Minimum = 1;
         nudQuantity.Maximum = 1000;
@@ -99,7 +99,6 @@ public class OrderForm : Form
         actions.Controls.AddRange([btnAddItem, btnRemoveItem, btnSaveOrder]);
         layout.Controls.Add(actions, 0, 8);
 
-        // Total card — nền hồng nhạt, đủ cao để hiển thị số tiền
         var totalCard = Theme.CreateCard(16);
         totalCard.Height = 90;
         totalCard.Dock = DockStyle.None;
@@ -181,9 +180,9 @@ public class OrderForm : Form
         {
             x.ProductId,
             x.ProductName,
-            x.UnitPrice,
+            UnitPrice = x.UnitPrice,
             x.Quantity,
-            x.LineTotal
+            LineTotal = x.LineTotal
         }).ToList();
 
         lblTotal.Text = $"Tổng tiền: {_items.Sum(x => x.LineTotal):N0} VNĐ";
@@ -197,6 +196,14 @@ public class OrderForm : Form
         }
 
         int requested = (int)nudQuantity.Value;
+        if (requested <= 0)
+        {
+            MessageBox.Show("Số lượng phải lớn hơn 0."); return;
+        }
+        if (product.QuantityInStock <= 0)
+        {
+            MessageBox.Show("Sản phẩm này đã hết hàng."); return;
+        }
         if (requested > product.QuantityInStock)
         {
             MessageBox.Show("Số lượng vượt quá tồn kho."); return;

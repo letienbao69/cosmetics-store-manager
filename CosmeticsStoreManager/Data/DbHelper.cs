@@ -5,9 +5,10 @@ namespace CosmeticsStoreManager.Data;
 
 public static class DbHelper
 {
-    // Đổi Server và Database cho đúng máy của bạn
+    // Mặc định dùng SQL Server Express local. Nếu máy bạn khác server thì sửa tại đây.
+    // Ví dụ: Server=LAPTOP-M8KICGBD\SQLEXPRESS;Database=CosmeticsStoreDB;...
     private static readonly string _connectionString =
-    @"Server=LAPTOP-M8KICGBD\SQLEXPRESS;Database=CosmeticsStoreDB;Trusted_Connection=True;TrustServerCertificate=True;";
+        @"Server=.\SQLEXPRESS;Database=CosmeticsStoreDB;Trusted_Connection=True;TrustServerCertificate=True;";
 
     public static SqlConnection GetConnection()
     {

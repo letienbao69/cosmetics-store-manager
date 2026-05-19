@@ -69,14 +69,13 @@ public class LoginForm : Form
 
         var lblDesc = new Label
         {
-            Text = "Giao diện mới, trực quan hơn cho bài tập lớn nhóm.\nQuản lý sản phẩm, khách hàng, đơn hàng,\nkho và báo cáo trong một ứng dụng Windows.",
+        
             AutoSize = true,
             Font = new Font("Segoe UI", 11F),
             ForeColor = Color.FromArgb(255, 220, 234),
             Margin = new Padding(0, 0, 0, 32)
         };
 
-        // Info card — dùng PrimaryDark thay vì alpha để tránh lỗi màu vàng
         var infoCard = new Panel
         {
             Width = 320,
@@ -88,7 +87,7 @@ public class LoginForm : Form
         var lblInfo = new Label
         {
             Dock = DockStyle.Fill,
-            Text = "Tài khoản mẫu\n• Admin: admin / 123456\n• Staff: staff / 123456",
+            Text = "Tài khoản\n• Admin: admin / 123456\n• Staff: staff / 123456",
             ForeColor = Color.White,
             Font = new Font("Segoe UI", 11F, FontStyle.Bold),
             AutoSize = false
@@ -111,7 +110,6 @@ public class LoginForm : Form
             Padding = new Padding(60, 0, 60, 0)
         };
 
-        // Dùng TableLayoutPanel để căn giữa dọc
         var centerWrap = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
@@ -133,7 +131,7 @@ public class LoginForm : Form
 
         var lblWelcome = new Label
         {
-            Text = "Chào mừng quay lại",
+            Text ="Trang đăng nhập",
             AutoSize = true,
             Font = new Font("Segoe UI", 22F, FontStyle.Bold),
             ForeColor = Theme.TextPrimary,
@@ -142,7 +140,7 @@ public class LoginForm : Form
 
         var lblSub = new Label
         {
-            Text = "Đăng nhập để sử dụng hệ thống quản lý cửa hàng mỹ phẩm.",
+            Text = "Mời bạn đăng nhập",
             AutoSize = true,
             Font = new Font("Segoe UI", 10.5F),
             ForeColor = Theme.TextMuted,
@@ -168,7 +166,7 @@ public class LoginForm : Form
 
         var lblTip = new Label
         {
-            Text = "Mẹo: dùng tài khoản Staff để kiểm tra phân quyền cơ bản.",
+            Text = "Ngày mới chúc bạn nhiều niềm vui và tràn đầy năng lượng",
             AutoSize = true,
             Font = new Font("Segoe UI", 9.5F),
             ForeColor = Theme.TextMuted
@@ -193,6 +191,13 @@ public class LoginForm : Form
 
     private void BtnLogin_Click(object? sender, EventArgs e)
     {
+        if (string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+        {
+            MessageBox.Show("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.", "Thông báo",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
         try
         {
             var repo = new UserRepository();
@@ -211,6 +216,7 @@ public class LoginForm : Form
 
             Hide();
             new MainForm().ShowDialog();
+            Session.Clear();
             Show();
             txtPassword.Clear();
         }

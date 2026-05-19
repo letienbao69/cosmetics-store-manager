@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\legion 5\\Downloads\\CosmeticsStoreManager_UI_Updated\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj": {}
+    "C:\\Users\\legion 5\\Downloads\\New folder (5)\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\legion 5\\Downloads\\CosmeticsStoreManager_UI_Updated\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj": {
+    "C:\\Users\\legion 5\\Downloads\\New folder (5)\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\legion 5\\Downloads\\CosmeticsStoreManager_UI_Updated\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj",
+        "projectUniqueName": "C:\\Users\\legion 5\\Downloads\\New folder (5)\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj",
         "projectName": "CosmeticsStoreManager",
-        "projectPath": "C:\\Users\\legion 5\\Downloads\\CosmeticsStoreManager_UI_Updated\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj",
+        "projectPath": "C:\\Users\\legion 5\\Downloads\\New folder (5)\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj",
         "packagesPath": "C:\\Users\\legion 5\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\legion 5\\Downloads\\CosmeticsStoreManager_UI_Updated\\CosmeticsStoreManager\\obj\\",
+        "outputPath": "C:\\Users\\legion 5\\Downloads\\New folder (5)\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\legion 5\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -30,7 +30,6 @@ public class MainForm : Form
             BackColor = Theme.Sidebar
         };
 
-        // Header logo
         var header = new Panel
         {
             Dock = DockStyle.Top,
@@ -48,32 +47,29 @@ public class MainForm : Form
         };
         header.Controls.Add(lblLogo);
 
-        // Divider
         var divider = new Panel
         {
             Dock = DockStyle.Top,
             Height = 1,
-            BackColor = Color.FromArgb(80, 255, 255, 255),
-            Margin = new Padding(0)
+            BackColor = Color.FromArgb(80, 255, 255, 255)
         };
 
-        // Nav buttons — thêm theo thứ tự ngược (DockStyle.Top stack từ dưới lên)
-        var btnLogout = Theme.CreateSidebarButton("⬅  Đăng xuất");
-        var btnReports = Theme.CreateSidebarButton("📊  Báo cáo thống kê");
-        var btnOrders = Theme.CreateSidebarButton("🛒  Quản lý đơn hàng");
-        var btnCustomers = Theme.CreateSidebarButton("👤  Quản lý khách hàng");
         var btnProducts = Theme.CreateSidebarButton("💄  Quản lý sản phẩm");
+        var btnCustomers = Theme.CreateSidebarButton("👤  Quản lý khách hàng");
+        var btnOrders = Theme.CreateSidebarButton("🛒  Quản lý đơn hàng");
+        var btnReports = Theme.CreateSidebarButton("📊  Báo cáo thống kê");
+        var btnLogout = Theme.CreateSidebarButton("⬅  Đăng xuất");
 
-        btnLogout.Click += (_, _) => Close();
-        btnReports.Click += (_, _) => new ReportForm().ShowDialog();
-        btnOrders.Click += (_, _) => new OrderForm().ShowDialog();
-        btnCustomers.Click += (_, _) => new CustomerForm().ShowDialog();
         btnProducts.Click += (_, _) => new ProductForm().ShowDialog();
+        btnCustomers.Click += (_, _) => new CustomerForm().ShowDialog();
+        btnOrders.Click += (_, _) => new OrderForm().ShowDialog();
+        btnReports.Click += (_, _) => new ReportForm().ShowDialog();
+        btnLogout.Click += (_, _) => Close();
 
         if (Session.Role.Equals("Staff", StringComparison.OrdinalIgnoreCase))
             btnReports.Enabled = false;
 
-        // Phần footer logout tách riêng
+        btnLogout.Dock = DockStyle.Bottom;
         var footerDivider = new Panel
         {
             Dock = DockStyle.Bottom,
@@ -102,13 +98,11 @@ public class MainForm : Form
             AutoScroll = true
         };
 
-        // Page header
         var title = Theme.CreatePageTitle("Bảng điều khiển");
         var subtitle = Theme.CreateSubtitle(
             $"Xin chào, {Session.Username} · Vai trò: {Session.Role}  —  Chọn phân hệ ở menu bên trái.");
         subtitle.Margin = new Padding(0, 2, 0, 24);
 
-        // Stat cards
         var statsPanel = new FlowLayoutPanel
         {
             AutoSize = true,
@@ -119,7 +113,6 @@ public class MainForm : Form
         statsPanel.Controls.Add(Theme.CreateStatCard("Vai trò hiện tại", Session.Role, "Phân quyền theo tài khoản"));
         statsPanel.Controls.Add(Theme.CreateStatCard("Tài khoản đăng nhập", Session.Username, "Người đang thao tác"));
 
-        // Quick access card
         var quickCard = Theme.CreateCard(24);
         quickCard.Width = 900;
         quickCard.Height = 200;
@@ -136,7 +129,7 @@ public class MainForm : Form
         quickLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
         quickLayout.Controls.Add(Theme.CreatePageTitle("Truy cập nhanh"), 0, 0);
-        quickLayout.Controls.Add(Theme.CreateSubtitle("Mở nhanh các chức năng chính bằng nút bên dưới."), 0, 1);
+        quickLayout.Controls.Add(Theme.CreateSubtitle("Mở nhanh các chức năng bằng nút bên dưới."), 0, 1);
 
         var buttons = new FlowLayoutPanel
         {
@@ -162,24 +155,22 @@ public class MainForm : Form
         quickLayout.Controls.Add(buttons, 0, 2);
         quickCard.Controls.Add(quickLayout);
 
-        // Note card
         var noteCard = Theme.CreateCard(24);
         noteCard.Width = 900;
         noteCard.Height = 195;
-        noteCard.Margin = new Padding(0, 0, 0, 0);
 
-        var noteTitle = Theme.CreateFieldLabel("📌 Gợi ý trình bày bài tập lớn");
+        var noteTitle = Theme.CreateFieldLabel("✨ Giới thiệu cửa hàng mỹ phẩm");
         noteTitle.Dock = DockStyle.Top;
         noteTitle.Height = 32;
 
         var noteContent = new Label
         {
             Dock = DockStyle.Fill,
-            Text = "• Form đăng nhập và phân quyền Admin / Staff\n" +
-                   "• Form quản lý sản phẩm, khách hàng, đơn hàng\n" +
-                   "• Tồn kho cập nhật sau khi bán hàng\n" +
-                   "• Báo cáo doanh thu và sản phẩm sắp hết\n" +
-                   "• Giao diện hồng nhất quán, chuyên nghiệp, dễ demo.",
+            Text = "• Chuyên cung cấp mỹ phẩm chính hãng, chăm sóc da và trang điểm\n" +
+                   "• Đa dạng sản phẩm: son môi, kem dưỡng, serum, nước hoa\n" +
+                   "• Cam kết chất lượng, an toàn và phù hợp nhiều loại da\n" +
+                   "• Cập nhật xu hướng làm đẹp mới nhất, sản phẩm bán chạy\n" +
+                   "• Nhân viên thao tác hỗ trợ nhanh và chính xác hơn.",
             Font = new Font("Segoe UI", 10.5F),
             ForeColor = Theme.TextPrimary
         };

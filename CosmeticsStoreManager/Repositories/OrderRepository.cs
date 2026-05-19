@@ -1,6 +1,7 @@
 using CosmeticsStoreManager.Data;
 using CosmeticsStoreManager.Models;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace CosmeticsStoreManager.Repositories;
 
@@ -8,6 +9,9 @@ public class OrderRepository
 {
     public int CreateOrder(int customerId, int userId, List<OrderItem> items)
     {
+        if (items.Count == 0)
+            throw new InvalidOperationException("Đơn hàng chưa có sản phẩm.");
+
         using var conn = DbHelper.GetConnection();
         conn.Open();
         using var tran = conn.BeginTransaction();
@@ -16,45 +20,54 @@ public class OrderRepository
         {
             decimal total = items.Sum(x => x.LineTotal);
 
-            var insertOrder = new SqlCommand(@"
+            using var insertOrder = new SqlCommand(@"
 INSERT INTO Orders(OrderDate, CustomerId, UserId, TotalAmount)
 OUTPUT INSERTED.OrderId
 VALUES(GETDATE(), @CustomerId, @UserId, @TotalAmount)", conn, tran);
 
-            insertOrder.Parameters.AddWithValue("@CustomerId", customerId);
-            insertOrder.Parameters.AddWithValue("@UserId", userId);
-            insertOrder.Parameters.AddWithValue("@TotalAmount", total);
+            insertOrder.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customerId;
+            insertOrder.Parameters.Add("@UserId", SqlDbType.Int).Value = userId;
+            var totalParam = insertOrder.Parameters.Add("@TotalAmount", SqlDbType.Decimal);
+            totalParam.Precision = 18;
+            totalParam.Scale = 2;
+            totalParam.Value = total;
 
             int orderId = Convert.ToInt32(insertOrder.ExecuteScalar());
 
             foreach (var item in items)
             {
-                var stockCheckCmd = new SqlCommand("SELECT QuantityInStock FROM Products WHERE ProductId=@ProductId", conn, tran);
-                stockCheckCmd.Parameters.AddWithValue("@ProductId", item.ProductId);
-                int stock = Convert.ToInt32(stockCheckCmd.ExecuteScalar());
+                // Trừ kho an toàn: chỉ trừ khi tồn kho còn đủ.
+                using var updateStock = new SqlCommand(@"
+UPDATE Products
+SET QuantityInStock = QuantityInStock - @Quantity
+WHERE ProductId = @ProductId AND QuantityInStock >= @Quantity", conn, tran);
 
-                if (stock < item.Quantity)
-                    throw new Exception($"Sản phẩm ID {item.ProductId} không đủ tồn kho.");
+                updateStock.Parameters.Add("@Quantity", SqlDbType.Int).Value = item.Quantity;
+                updateStock.Parameters.Add("@ProductId", SqlDbType.Int).Value = item.ProductId;
 
-                var insertDetail = new SqlCommand(@"
+                int affected = updateStock.ExecuteNonQuery();
+                if (affected == 0)
+                    throw new Exception($"Sản phẩm {item.ProductName} không đủ tồn kho hoặc không tồn tại.");
+
+                using var insertDetail = new SqlCommand(@"
 INSERT INTO OrderDetails(OrderId, ProductId, Quantity, UnitPrice, LineTotal)
 VALUES(@OrderId, @ProductId, @Quantity, @UnitPrice, @LineTotal)", conn, tran);
 
-                insertDetail.Parameters.AddWithValue("@OrderId", orderId);
-                insertDetail.Parameters.AddWithValue("@ProductId", item.ProductId);
-                insertDetail.Parameters.AddWithValue("@Quantity", item.Quantity);
-                insertDetail.Parameters.AddWithValue("@UnitPrice", item.UnitPrice);
-                insertDetail.Parameters.AddWithValue("@LineTotal", item.LineTotal);
+                insertDetail.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
+                insertDetail.Parameters.Add("@ProductId", SqlDbType.Int).Value = item.ProductId;
+                insertDetail.Parameters.Add("@Quantity", SqlDbType.Int).Value = item.Quantity;
+
+                var unitPriceParam = insertDetail.Parameters.Add("@UnitPrice", SqlDbType.Decimal);
+                unitPriceParam.Precision = 18;
+                unitPriceParam.Scale = 2;
+                unitPriceParam.Value = item.UnitPrice;
+
+                var lineTotalParam = insertDetail.Parameters.Add("@LineTotal", SqlDbType.Decimal);
+                lineTotalParam.Precision = 18;
+                lineTotalParam.Scale = 2;
+                lineTotalParam.Value = item.LineTotal;
+
                 insertDetail.ExecuteNonQuery();
-
-                var updateStock = new SqlCommand(@"
-UPDATE Products
-SET QuantityInStock = QuantityInStock - @Quantity
-WHERE ProductId=@ProductId", conn, tran);
-
-                updateStock.Parameters.AddWithValue("@Quantity", item.Quantity);
-                updateStock.Parameters.AddWithValue("@ProductId", item.ProductId);
-                updateStock.ExecuteNonQuery();
             }
 
             tran.Commit();
@@ -67,7 +80,7 @@ WHERE ProductId=@ProductId", conn, tran);
         }
     }
 
-    public System.Data.DataTable GetRevenueByDate()
+    public DataTable GetRevenueByDate()
     {
         const string query = @"
 SELECT CONVERT(date, OrderDate) AS [Date], SUM(TotalAmount) AS Revenue
@@ -78,13 +91,29 @@ ORDER BY [Date] DESC";
         return DbHelper.ExecuteQuery(query);
     }
 
-    public System.Data.DataTable GetLowStockProducts()
+    public DataTable GetLowStockProducts()
     {
         const string query = @"
 SELECT ProductCode, ProductName, QuantityInStock
 FROM Products
 WHERE QuantityInStock <= 10
 ORDER BY QuantityInStock ASC";
+
+        return DbHelper.ExecuteQuery(query);
+    }
+
+    public DataTable GetBestSellingProducts()
+    {
+        const string query = @"
+SELECT TOP 10
+    p.ProductCode,
+    p.ProductName,
+    SUM(od.Quantity) AS TotalSold,
+    SUM(od.LineTotal) AS Revenue
+FROM OrderDetails od
+JOIN Products p ON p.ProductId = od.ProductId
+GROUP BY p.ProductCode, p.ProductName
+ORDER BY TotalSold DESC";
 
         return DbHelper.ExecuteQuery(query);
     }

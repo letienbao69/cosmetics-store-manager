@@ -1,6 +1,7 @@
 using CosmeticsStoreManager.Models;
 using CosmeticsStoreManager.Repositories;
 using CosmeticsStoreManager.UI;
+using Microsoft.Data.SqlClient;
 
 namespace CosmeticsStoreManager.Forms;
 
@@ -8,7 +9,7 @@ public class ProductForm : Form
 {
     private readonly ProductRepository _repo = new();
     private readonly DataGridView dgv = new() { Dock = DockStyle.Fill };
-    private readonly TextBox txtSearch = Theme.CreateTextBox("Tìm theo mã hoặc tên sản phẩm");
+    private readonly TextBox txtSearch = Theme.CreateTextBox("Tìm theo mã, tên hoặc thương hiệu");
     private readonly TextBox txtCode = Theme.CreateTextBox();
     private readonly TextBox txtName = Theme.CreateTextBox();
     private readonly TextBox txtCategory = Theme.CreateTextBox();
@@ -25,6 +26,7 @@ public class ProductForm : Form
     {
         Theme.ApplyForm(this, "Quản lý sản phẩm");
         Size = new Size(1380, 820);
+        AutoScroll = true;
 
         nudImportPrice.Maximum = 1_000_000_000;
         nudSalePrice.Maximum = 1_000_000_000;
@@ -82,7 +84,6 @@ public class ProductForm : Form
         layout.Controls.Add(Theme.CreateFieldLabel("Thương hiệu"), 0, 8);
         txtBrand.Dock = DockStyle.Fill; layout.Controls.Add(txtBrand, 0, 9);
 
-        // Giá nhập / Giá bán
         var priceRow = new FlowLayoutPanel
         {
             AutoSize = true,
@@ -93,7 +94,6 @@ public class ProductForm : Form
         priceRow.Controls.Add(CreateMiniField("Giá bán", nudSalePrice));
         layout.Controls.Add(priceRow, 0, 10);
 
-        // Tồn kho / Hạn dùng
         var stockRow = new FlowLayoutPanel
         {
             AutoSize = true,
@@ -107,7 +107,6 @@ public class ProductForm : Form
         layout.Controls.Add(Theme.CreateFieldLabel("Mô tả"), 0, 12);
         txtDescription.Dock = DockStyle.Fill; layout.Controls.Add(txtDescription, 0, 13);
 
-        // Buttons 2x2 grid — đều nhau, fill chiều rộng
         var actions = new TableLayoutPanel
         {
             ColumnCount = 2,
@@ -147,66 +146,149 @@ public class ProductForm : Form
         return card;
     }
 
+    //private Control BuildRightPanel()
+    //{
+    //    var wrap = new Panel { Dock = DockStyle.Fill };
+
+    //    var headerCard = Theme.CreateCard(18);
+    //    headerCard.Dock = DockStyle.Top;
+    //    headerCard.Height = 148;
+
+    //    var headerLayout = new TableLayoutPanel
+    //    {
+    //        Dock = DockStyle.Fill,
+    //        ColumnCount = 1,
+    //        RowCount = 3
+    //    };
+    //    headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+    //    headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+    //    headerLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 54));
+
+    //    headerLayout.Controls.Add(Theme.CreatePageTitle("📋  Danh sách sản phẩm"), 0, 0);
+    //    headerLayout.Controls.Add(Theme.CreateSubtitle("Tìm kiếm nhanh, chọn dòng để chỉnh sửa hoặc xóa."), 0, 1);
+
+    //    var searchRow = new TableLayoutPanel
+    //    {
+    //        Dock = DockStyle.Fill,
+    //        ColumnCount = 3,
+    //        RowCount = 1,
+    //        Margin = new Padding(0, 6, 0, 0)
+    //    };
+    //    searchRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+    //    searchRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110));
+    //    searchRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110));
+    //    searchRow.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+    //    txtSearch.Dock = DockStyle.Fill;
+    //    txtSearch.Margin = new Padding(0, 0, 6, 0);
+    //    var btnSearch = Theme.CreatePrimaryButton("🔍  Tìm", 104);
+    //    var btnReload = Theme.CreateSecondaryButton("↺  Tải lại", 104);
+    //    btnSearch.Dock = DockStyle.Fill;
+    //    btnSearch.Margin = new Padding(0, 0, 6, 0);
+    //    btnReload.Dock = DockStyle.Fill;
+    //    btnReload.Margin = new Padding(0);
+
+    //    btnSearch.Click += (_, _) => LoadData(txtSearch.Text.Trim());
+    //    btnReload.Click += (_, _) => { txtSearch.Clear(); LoadData(); };
+
+    //    searchRow.Controls.Add(txtSearch, 0, 0);
+    //    searchRow.Controls.Add(btnSearch, 1, 0);
+    //    searchRow.Controls.Add(btnReload, 2, 0);
+
+    //    headerLayout.Controls.Add(searchRow, 0, 2);
+    //    headerCard.Controls.Add(headerLayout);
+
+    //    var gridCard = Theme.CreateCard(10);
+    //    gridCard.Dock = DockStyle.Fill;
+    //    gridCard.Controls.Add(dgv);
+
+    //    wrap.Controls.Add(gridCard);
+    //    wrap.Controls.Add(headerCard);
+    //    return wrap;
+    //}
+
     private Control BuildRightPanel()
     {
         var wrap = new Panel { Dock = DockStyle.Fill };
 
         var headerCard = Theme.CreateCard(18);
         headerCard.Dock = DockStyle.Top;
-        headerCard.Height = 148;
+        headerCard.AutoSize = true;
+        headerCard.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
         var headerLayout = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
             ColumnCount = 1,
-            RowCount = 3
+            RowCount = 3,
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            Padding = new Padding(0)
         };
+
         headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        headerLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 54));
+        headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-        headerLayout.Controls.Add(Theme.CreatePageTitle("📋  Danh sách sản phẩm"), 0, 0);
-        headerLayout.Controls.Add(Theme.CreateSubtitle(
-            "Tìm kiếm nhanh, chọn dòng để chỉnh sửa hoặc xóa."), 0, 1);
+        headerLayout.Controls.Add(
+            Theme.CreatePageTitle("📋  Danh sách sản phẩm"), 0, 0);
 
-        // Search row dùng TableLayoutPanel để txtSearch fill tự động
+        headerLayout.Controls.Add(
+            Theme.CreateSubtitle("Tìm kiếm nhanh, chọn dòng để chỉnh sửa hoặc xóa."),
+            0, 1);
+
         var searchRow = new TableLayoutPanel
         {
-            Dock = DockStyle.Fill,
+            Dock = DockStyle.Top,
             ColumnCount = 3,
             RowCount = 1,
-            Margin = new Padding(0, 6, 0, 0)
+            Margin = new Padding(0, 10, 0, 0),
+            Height = 42,
+            AutoSize = true
         };
+
         searchRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         searchRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110));
         searchRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110));
-        searchRow.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
 
         txtSearch.Dock = DockStyle.Fill;
         txtSearch.Margin = new Padding(0, 0, 6, 0);
+
         var btnSearch = Theme.CreatePrimaryButton("🔍  Tìm", 104);
         var btnReload = Theme.CreateSecondaryButton("↺  Tải lại", 104);
+
         btnSearch.Dock = DockStyle.Fill;
-        btnSearch.Margin = new Padding(0, 0, 6, 0);
         btnReload.Dock = DockStyle.Fill;
+
+        btnSearch.Margin = new Padding(0, 0, 6, 0);
         btnReload.Margin = new Padding(0);
 
         btnSearch.Click += (_, _) => LoadData(txtSearch.Text.Trim());
-        btnReload.Click += (_, _) => { txtSearch.Clear(); LoadData(); };
+
+        btnReload.Click += (_, _) =>
+        {
+            txtSearch.Clear();
+            LoadData();
+        };
 
         searchRow.Controls.Add(txtSearch, 0, 0);
         searchRow.Controls.Add(btnSearch, 1, 0);
         searchRow.Controls.Add(btnReload, 2, 0);
 
         headerLayout.Controls.Add(searchRow, 0, 2);
+
         headerCard.Controls.Add(headerLayout);
 
         var gridCard = Theme.CreateCard(10);
         gridCard.Dock = DockStyle.Fill;
+        gridCard.Padding = new Padding(8);
+
+        dgv.Dock = DockStyle.Fill;
         gridCard.Controls.Add(dgv);
 
         wrap.Controls.Add(gridCard);
         wrap.Controls.Add(headerCard);
+
         return wrap;
     }
 
@@ -244,14 +326,61 @@ public class ProductForm : Form
         Description = txtDescription.Text.Trim()
     };
 
+    private bool ValidateProduct()
+    {
+        if (string.IsNullOrWhiteSpace(txtCode.Text))
+        {
+            MessageBox.Show("Mã sản phẩm không được để trống.");
+            txtCode.Focus();
+            return false;
+        }
+        if (string.IsNullOrWhiteSpace(txtName.Text))
+        {
+            MessageBox.Show("Tên sản phẩm không được để trống.");
+            txtName.Focus();
+            return false;
+        }
+        if (string.IsNullOrWhiteSpace(txtCategory.Text))
+        {
+            MessageBox.Show("Loại sản phẩm không được để trống.");
+            txtCategory.Focus();
+            return false;
+        }
+        if (string.IsNullOrWhiteSpace(txtBrand.Text))
+        {
+            MessageBox.Show("Thương hiệu không được để trống.");
+            txtBrand.Focus();
+            return false;
+        }
+        if (nudSalePrice.Value <= 0)
+        {
+            MessageBox.Show("Giá bán phải lớn hơn 0.");
+            nudSalePrice.Focus();
+            return false;
+        }
+        if (nudSalePrice.Value < nudImportPrice.Value)
+        {
+            MessageBox.Show("Giá bán không nên nhỏ hơn giá nhập.");
+            nudSalePrice.Focus();
+            return false;
+        }
+        return true;
+    }
+
     private void AddProduct()
     {
+        if (!ValidateProduct()) return;
         try
         {
             _repo.Add(BuildProduct());
             MessageBox.Show("Thêm sản phẩm thành công.", "Thông báo",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadData(); ClearInput();
+        }
+        catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
+        {
+            MessageBox.Show("Mã sản phẩm đã tồn tại. Vui lòng nhập mã khác.", "Lỗi",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         catch (Exception ex)
         {
@@ -263,12 +392,18 @@ public class ProductForm : Form
     private void UpdateProduct()
     {
         if (_selectedId == 0) { MessageBox.Show("Hãy chọn sản phẩm cần sửa."); return; }
+        if (!ValidateProduct()) return;
         try
         {
             _repo.Update(BuildProduct());
             MessageBox.Show("Cập nhật sản phẩm thành công.", "Thông báo",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadData(); ClearInput();
+        }
+        catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
+        {
+            MessageBox.Show("Mã sản phẩm đã tồn tại. Vui lòng nhập mã khác.", "Lỗi",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         catch (Exception ex)
         {
@@ -288,6 +423,11 @@ public class ProductForm : Form
             MessageBox.Show("Xóa sản phẩm thành công.", "Thông báo",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadData(); ClearInput();
+        }
+        catch (SqlException ex) when (ex.Number == 547)
+        {
+            MessageBox.Show("Không thể xóa sản phẩm này vì đã phát sinh đơn hàng. Bạn có thể giữ lại để bảo toàn dữ liệu báo cáo.", "Thông báo",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         catch (Exception ex)
         {
@@ -318,5 +458,6 @@ public class ProductForm : Form
         txtCode.Clear(); txtName.Clear(); txtCategory.Clear(); txtBrand.Clear();
         nudImportPrice.Value = 0; nudSalePrice.Value = 0; nudStock.Value = 0;
         dtpExpiry.Checked = false; txtDescription.Clear();
+        dgv.ClearSelection();
     }
 }

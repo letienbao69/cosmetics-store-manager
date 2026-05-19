@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OeyoKzBKYnk=",
+  "dgSpecHash": "MJeEyvC2+ow=",
   "success": true,
-  "projectFilePath": "C:\\Users\\legion 5\\Downloads\\CosmeticsStoreManager_UI_Updated\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj",
+  "projectFilePath": "C:\\Users\\legion 5\\Downloads\\New folder (5)\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager_Reviewed\\CosmeticsStoreManager\\CosmeticsStoreManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\legion 5\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\legion 5\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

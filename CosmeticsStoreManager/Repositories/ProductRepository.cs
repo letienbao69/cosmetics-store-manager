@@ -9,10 +9,10 @@ public class ProductRepository
 {
     public List<Product> GetAll(string? keyword = null)
     {
-        string query = @"
+        const string query = @"
 SELECT ProductId, ProductCode, ProductName, Category, Brand, ImportPrice, SalePrice, QuantityInStock, ExpiryDate, Description
 FROM Products
-WHERE (@Keyword IS NULL OR ProductName LIKE '%' + @Keyword + '%' OR ProductCode LIKE '%' + @Keyword + '%')
+WHERE (@Keyword IS NULL OR ProductName LIKE '%' + @Keyword + '%' OR ProductCode LIKE '%' + @Keyword + '%' OR Brand LIKE '%' + @Keyword + '%')
 ORDER BY ProductId DESC";
 
         var dt = DbHelper.ExecuteQuery(query,
@@ -48,7 +48,7 @@ VALUES(@ProductCode, @ProductName, @Category, @Brand, @ImportPrice, @SalePrice, 
             new SqlParameter("@SalePrice", p.SalePrice),
             new SqlParameter("@QuantityInStock", p.QuantityInStock),
             new SqlParameter("@ExpiryDate", (object?)p.ExpiryDate ?? DBNull.Value),
-            new SqlParameter("@Description", p.Description));
+            new SqlParameter("@Description", string.IsNullOrWhiteSpace(p.Description) ? DBNull.Value : p.Description));
     }
 
     public void Update(Product p)
@@ -70,7 +70,7 @@ WHERE ProductId=@ProductId";
             new SqlParameter("@SalePrice", p.SalePrice),
             new SqlParameter("@QuantityInStock", p.QuantityInStock),
             new SqlParameter("@ExpiryDate", (object?)p.ExpiryDate ?? DBNull.Value),
-            new SqlParameter("@Description", p.Description));
+            new SqlParameter("@Description", string.IsNullOrWhiteSpace(p.Description) ? DBNull.Value : p.Description));
     }
 
     public void Delete(int productId)

@@ -5,24 +5,24 @@ namespace CosmeticsStoreManager.UI;
 
 public static class Theme
 {
-    // ?? Core Palette ?????????????????????????????????????????????????????????
-    public static readonly Color AppBackground = Color.FromArgb(255, 245, 248);   // blush white
-    public static readonly Color Surface = Color.FromArgb(255, 255, 255);   // pure white
-    public static readonly Color SurfaceAlt = Color.FromArgb(255, 240, 245);   // soft rose tint
-    public static readonly Color Primary = Color.FromArgb(219, 63, 116);   // deep rose
-    public static readonly Color PrimaryDark = Color.FromArgb(180, 35, 85);   // dark rose
-    public static readonly Color PrimaryLight = Color.FromArgb(252, 220, 232);   // pale pink
-    public static readonly Color Sidebar = Color.FromArgb(60, 18, 35);   // dark berry
-    public static readonly Color SidebarHover = Color.FromArgb(90, 30, 55);   // berry hover
-    public static readonly Color SidebarActive = Color.FromArgb(219, 63, 116);   // primary rose
-    public static readonly Color Success = Color.FromArgb(14, 159, 110);   // emerald
-    public static readonly Color Danger = Color.FromArgb(229, 62, 62);   // red
-    public static readonly Color Warning = Color.FromArgb(214, 115, 38);   // amber
-    public static readonly Color TextPrimary = Color.FromArgb(44, 13, 26);   // near-black berry
-    public static readonly Color TextMuted = Color.FromArgb(159, 99, 128);   // muted mauve
-    public static readonly Color Border = Color.FromArgb(240, 210, 225);   // rose border
+    // Core Palette
+    public static readonly Color AppBackground = Color.FromArgb(255, 245, 248);
+    public static readonly Color Surface = Color.FromArgb(255, 255, 255);
+    public static readonly Color SurfaceAlt = Color.FromArgb(255, 240, 245);
+    public static readonly Color Primary = Color.FromArgb(219, 63, 116);
+    public static readonly Color PrimaryDark = Color.FromArgb(180, 35, 85);
+    public static readonly Color PrimaryLight = Color.FromArgb(252, 220, 232);
+    public static readonly Color Sidebar = Color.FromArgb(60, 18, 35);
+    public static readonly Color SidebarHover = Color.FromArgb(90, 30, 55);
+    public static readonly Color SidebarActive = Color.FromArgb(219, 63, 116);
+    public static readonly Color Success = Color.FromArgb(14, 159, 110);
+    public static readonly Color Danger = Color.FromArgb(229, 62, 62);
+    public static readonly Color Warning = Color.FromArgb(214, 115, 38);
+    public static readonly Color TextPrimary = Color.FromArgb(44, 13, 26);
+    public static readonly Color TextMuted = Color.FromArgb(159, 99, 128);
+    public static readonly Color Border = Color.FromArgb(240, 210, 225);
 
-    // ?? Form ?????????????????????????????????????????????????????????????????
+    // Form
     public static void ApplyForm(Form form, string title)
     {
         form.Text = title;
@@ -31,7 +31,7 @@ public static class Theme
         form.StartPosition = FormStartPosition.CenterScreen;
     }
 
-    // ?? Cards ?????????????????????????????????????????????????????????????????
+    // Cards
     public static Panel CreateCard(int padding = 18)
     {
         return new Panel
@@ -43,7 +43,7 @@ public static class Theme
         };
     }
 
-    // ?? Typography ???????????????????????????????????????????????????????????
+    // Typography
     public static Label CreatePageTitle(string text)
     {
         return new Label
@@ -83,7 +83,7 @@ public static class Theme
         };
     }
 
-    // ?? Form Controls ????????????????????????????????????????????????????????
+    // Form Controls
     public static TextBox CreateTextBox(string placeholder = "")
     {
         return new TextBox
@@ -141,7 +141,7 @@ public static class Theme
         };
     }
 
-    // ?? Buttons ???????????????????????????????????????????????????????????????
+    // Buttons
     public static Button CreatePrimaryButton(string text, int width = 130)
         => BuildButton(text, Primary, Color.White, width);
 
@@ -163,7 +163,7 @@ public static class Theme
             Dock = DockStyle.Top,
             FlatStyle = FlatStyle.Flat,
             BackColor = Sidebar,
-            ForeColor = Color.FromArgb(255, 210, 225),   // soft rose text
+            ForeColor = Color.FromArgb(255, 210, 225),
             TextAlign = ContentAlignment.MiddleLeft,
             Padding = new Padding(18, 0, 0, 0),
             Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
@@ -194,7 +194,7 @@ public static class Theme
         return btn;
     }
 
-    // ?? DataGridView ??????????????????????????????????????????????????????????
+    // DataGridView
     public static void StyleGrid(DataGridView grid)
     {
         grid.BackgroundColor = Surface;
@@ -232,7 +232,7 @@ public static class Theme
         };
     }
 
-    // ?? Stat Cards ????????????????????????????????????????????????????????????
+    // Stat Cards
     public static Panel CreateStatCard(string title, string value, string note)
     {
         var card = CreateCard(18);

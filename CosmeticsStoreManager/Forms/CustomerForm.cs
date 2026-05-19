@@ -1,6 +1,7 @@
 using CosmeticsStoreManager.Models;
 using CosmeticsStoreManager.Repositories;
 using CosmeticsStoreManager.UI;
+using Microsoft.Data.SqlClient;
 
 namespace CosmeticsStoreManager.Forms;
 
@@ -8,7 +9,7 @@ public class CustomerForm : Form
 {
     private readonly CustomerRepository _repo = new();
     private readonly DataGridView dgv = new() { Dock = DockStyle.Fill };
-    private readonly TextBox txtSearch = Theme.CreateTextBox("Tìm theo tên hoặc số điện thoại");
+    private readonly TextBox txtSearch = Theme.CreateTextBox("Tìm theo tên, SĐT hoặc email");
     private readonly TextBox txtFullName = Theme.CreateTextBox();
     private readonly TextBox txtPhone = Theme.CreateTextBox();
     private readonly TextBox txtAddress = Theme.CreateTextBox();
@@ -20,6 +21,7 @@ public class CustomerForm : Form
     {
         Theme.ApplyForm(this, "Quản lý khách hàng");
         Size = new Size(1280, 760);
+        AutoScroll = true;
         Theme.StyleGrid(dgv);
 
         var root = new TableLayoutPanel
@@ -70,7 +72,6 @@ public class CustomerForm : Form
         layout.Controls.Add(Theme.CreateFieldLabel("Email"), 0, 8);
         txtEmail.Dock = DockStyle.Fill; layout.Controls.Add(txtEmail, 0, 9);
 
-        // Buttons 2x2 grid — đều nhau, fill chiều rộng
         var actions = new TableLayoutPanel
         {
             ColumnCount = 2,
@@ -183,8 +184,38 @@ public class CustomerForm : Form
         Email = txtEmail.Text.Trim()
     };
 
+    private bool ValidateCustomer()
+    {
+        if (string.IsNullOrWhiteSpace(txtFullName.Text))
+        {
+            MessageBox.Show("Họ tên khách hàng không được để trống.");
+            txtFullName.Focus();
+            return false;
+        }
+        if (string.IsNullOrWhiteSpace(txtPhone.Text))
+        {
+            MessageBox.Show("Số điện thoại không được để trống.");
+            txtPhone.Focus();
+            return false;
+        }
+        if (txtPhone.Text.Trim().Length < 9)
+        {
+            MessageBox.Show("Số điện thoại chưa hợp lệ.");
+            txtPhone.Focus();
+            return false;
+        }
+        if (!string.IsNullOrWhiteSpace(txtEmail.Text) && !txtEmail.Text.Contains('@'))
+        {
+            MessageBox.Show("Email chưa hợp lệ.");
+            txtEmail.Focus();
+            return false;
+        }
+        return true;
+    }
+
     private void AddCustomer()
     {
+        if (!ValidateCustomer()) return;
         try
         {
             _repo.Add(BuildCustomer());
@@ -202,6 +233,7 @@ public class CustomerForm : Form
     private void UpdateCustomer()
     {
         if (_selectedId == 0) { MessageBox.Show("Hãy chọn khách hàng cần sửa."); return; }
+        if (!ValidateCustomer()) return;
         try
         {
             _repo.Update(BuildCustomer());
@@ -228,6 +260,11 @@ public class CustomerForm : Form
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadData(); ClearInput();
         }
+        catch (SqlException ex) when (ex.Number == 547)
+        {
+            MessageBox.Show("Không thể xóa khách hàng này vì đã phát sinh đơn hàng.", "Thông báo",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
         catch (Exception ex)
         {
             MessageBox.Show("Lỗi xóa khách hàng: " + ex.Message, "Lỗi",
@@ -250,5 +287,6 @@ public class CustomerForm : Form
         _selectedId = 0;
         txtFullName.Clear(); txtPhone.Clear();
         txtAddress.Clear(); txtEmail.Clear();
+        dgv.ClearSelection();
     }
 }

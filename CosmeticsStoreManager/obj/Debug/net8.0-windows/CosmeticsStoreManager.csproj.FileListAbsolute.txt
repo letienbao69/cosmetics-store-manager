@@ -1,101 +1,52 @@
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.csproj.AssemblyReference.cache
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.AssemblyInfoInputs.cache
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.AssemblyInfo.cs
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.csproj.CoreCompileInputs.cache
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.exe
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.deps.json
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.runtimeconfig.json
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.pdb
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Azure.Core.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Azure.Identity.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Data.SqlClient.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Identity.Client.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Logging.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Protocols.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Tokens.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.SqlServer.Server.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.ClientModel.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.Memory.Data.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.Runtime.Caching.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\de\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\es\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\fr\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\it\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\ja\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\ko\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\pt-BR\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\ru\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\zh-Hans\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\Microsoft.Data.SqlClient.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\Microsoft.Data.SqlClient.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\Cosmetic.94216817.Up2Date
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\refint\CosmeticsStoreManager.dll
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.pdb
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.genruntimeconfig.cache
-C:\Users\legion 5\Downloads\CosmeticsStoreManager_UI_Updated\CosmeticsStoreManager\obj\Debug\net8.0-windows\ref\CosmeticsStoreManager.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.exe
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.deps.json
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.runtimeconfig.json
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.pdb
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Azure.Core.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Azure.Identity.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Data.SqlClient.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Identity.Client.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Abstractions.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Logging.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Protocols.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Tokens.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.SqlServer.Server.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.ClientModel.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.IdentityModel.Tokens.Jwt.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.Memory.Data.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.Runtime.Caching.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\de\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\es\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\fr\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\it\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\ja\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\ko\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\pt-BR\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\ru\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\zh-Hans\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\Microsoft.Data.SqlClient.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\Microsoft.Data.SqlClient.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.csproj.AssemblyReference.cache
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.GeneratedMSBuildEditorConfig.editorconfig
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.AssemblyInfoInputs.cache
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.AssemblyInfo.cs
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.csproj.CoreCompileInputs.cache
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.sourcelink.json
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\Cosmetic.94216817.Up2Date
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\refint\CosmeticsStoreManager.dll
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.pdb
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.genruntimeconfig.cache
-C:\C#BTL\CosmeticsStoreManager\CosmeticsStoreManager\obj\Debug\net8.0-windows\ref\CosmeticsStoreManager.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.exe
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.deps.json
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.runtimeconfig.json
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\CosmeticsStoreManager.pdb
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Azure.Core.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Azure.Identity.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Data.SqlClient.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Identity.Client.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Logging.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Protocols.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Tokens.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\Microsoft.SqlServer.Server.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.ClientModel.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.Memory.Data.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\System.Runtime.Caching.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\de\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\es\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\fr\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\it\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\ja\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\ko\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\pt-BR\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\ru\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\Microsoft.Data.SqlClient.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\Microsoft.Data.SqlClient.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.csproj.AssemblyReference.cache
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.AssemblyInfoInputs.cache
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.AssemblyInfo.cs
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.csproj.CoreCompileInputs.cache
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\Cosmetic.94216817.Up2Date
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\refint\CosmeticsStoreManager.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.pdb
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.genruntimeconfig.cache
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\ref\CosmeticsStoreManager.dll
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.Forms.LoginForm.resources
+C:\Users\legion 5\Downloads\New folder (5)\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager_Reviewed\CosmeticsStoreManager\obj\Debug\net8.0-windows\CosmeticsStoreManager.csproj.GenerateResource.cache

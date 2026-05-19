@@ -12,7 +12,7 @@ public class CustomerRepository
         const string query = @"
 SELECT CustomerId, FullName, Phone, Address, Email
 FROM Customers
-WHERE (@Keyword IS NULL OR FullName LIKE '%' + @Keyword + '%' OR Phone LIKE '%' + @Keyword + '%')
+WHERE (@Keyword IS NULL OR FullName LIKE '%' + @Keyword + '%' OR Phone LIKE '%' + @Keyword + '%' OR Email LIKE '%' + @Keyword + '%')
 ORDER BY CustomerId DESC";
 
         var dt = DbHelper.ExecuteQuery(query,
@@ -37,8 +37,8 @@ VALUES(@FullName, @Phone, @Address, @Email)";
         DbHelper.ExecuteNonQuery(query,
             new SqlParameter("@FullName", c.FullName),
             new SqlParameter("@Phone", c.Phone),
-            new SqlParameter("@Address", c.Address),
-            new SqlParameter("@Email", c.Email));
+            new SqlParameter("@Address", string.IsNullOrWhiteSpace(c.Address) ? DBNull.Value : c.Address),
+            new SqlParameter("@Email", string.IsNullOrWhiteSpace(c.Email) ? DBNull.Value : c.Email));
     }
 
     public void Update(Customer c)
@@ -52,8 +52,8 @@ WHERE CustomerId=@CustomerId";
             new SqlParameter("@CustomerId", c.CustomerId),
             new SqlParameter("@FullName", c.FullName),
             new SqlParameter("@Phone", c.Phone),
-            new SqlParameter("@Address", c.Address),
-            new SqlParameter("@Email", c.Email));
+            new SqlParameter("@Address", string.IsNullOrWhiteSpace(c.Address) ? DBNull.Value : c.Address),
+            new SqlParameter("@Email", string.IsNullOrWhiteSpace(c.Email) ? DBNull.Value : c.Email));
     }
 
     public void Delete(int customerId)

@@ -15,7 +15,7 @@ WHERE Username = @Username AND PasswordHash = @PasswordHash";
 
         var dt = DbHelper.ExecuteQuery(query,
             new SqlParameter("@Username", username),
-            new SqlParameter("@PasswordHash", password)); // demo nhóm: lưu plain text cho dễ. Có thể nâng cấp hash sau.
+            new SqlParameter("@PasswordHash", password)); // Bài nhóm: giữ mật khẩu 123456 dạng plain text cho dễ demo.
 
         if (dt.Rows.Count == 0) return null;
 
